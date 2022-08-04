@@ -4,8 +4,10 @@ import devices.DeviceFarm;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -15,7 +17,7 @@ import org.testng.annotations.Test;
 import pages.AddContactPage;
 import pages.HomePage;
 import utility.DeviceFarmUtility;
-
+///usr/libexec/java_home
 import javax.swing.text.Utilities;
 import java.io.File;
 import java.net.MalformedURLException;
@@ -38,7 +40,7 @@ public class ContactManagerTestNG {
 
         capabilities = new DesiredCapabilities();
         capabilities = DeviceFarmUtility.pathToDesiredCapabilitites(this.oreo);
-        capabilities.setCapability("app", new File("src/test/resources/apps/ContactManager.apk").getAbsolutePath());
+        capabilities.setCapability("app", new File("/Users/farukayaz/Applications/ContactManager.apk").getAbsolutePath());
         Driver = new AndroidDriver(new URL("http://127.0.0.1:8080/wd/hub"), capabilities);
         homePage = new HomePage();
         addContactPage = new AddContactPage();
@@ -51,6 +53,8 @@ public class ContactManagerTestNG {
     }
     @Test(priority = 1)
     public void checkAddContactTitle(){
+
+
         Assert.assertEquals(addContactPage.getTitle().getText(),"Add Contact");
     }
     @AfterClass
