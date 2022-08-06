@@ -12,6 +12,7 @@ import io.appium.java_client.android.AndroidDriver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.springframework.core.annotation.Order;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -32,7 +33,7 @@ public class ContactManagerTestNG  {
     public static AppiumDriver<?> Driver;
     HomePage homePage;
     AddContactPage addContactPage;
-    String oreo, kitkat;
+    String oreo;
     DesiredCapabilities capabilities;
     String specialCharacters = "&%+^^";
     String myMail = "frkyz07.13@gmail.com";
@@ -49,7 +50,7 @@ public class ContactManagerTestNG  {
     }
     public ContactManagerTestNG() {
         oreo = DeviceFarm.ANDROID_OREO.path;
-        kitkat = DeviceFarm.ANDROID_KITKAT.path;
+
 
     }
     @BeforeClass
@@ -63,18 +64,28 @@ public class ContactManagerTestNG  {
         homePage = new HomePage();
         addContactPage = new AddContactPage();
     }
-    @Test(priority = 0)
+    @Order(1)
+    @Test
     public void openAddContactOnOreo() throws NullPointerException, InterruptedException {
-        homePage.getAddContactBtn().click();
-        Thread.sleep(4000);
+        try {
+            homePage.getAddContactBtn().click();
+            Thread.sleep(4000);
+        }catch(Exception e){
+            System.out.println("Couldnt find the locator"+e.getMessage());
+        }
     }
 
-    
-    @Test(priority = 1)
+    @Order(2)
+    @Test
     public void checkAddContactTitle(){
         //User checks title whether it is "Add Contact"
-        Assert.assertEquals(addContactPage.getTitle().getText(),"Add Contact");
+        try {
+            Assert.assertEquals(addContactPage.getTitle().getText(), "Add Contact");
+        }catch(AssertionError e){
+            System.out.println("Your expected value did not match with the actual value "+e.getMessage());
+        }
     }
+    @Order(3)
     @Test
     public void targetAccountCheck(){
         try {
@@ -85,7 +96,7 @@ public class ContactManagerTestNG  {
             System.out.println("Couldnt find the locator"+e.getMessage());
         }
     }
-    
+    @Order(4)
     @Test
     public void userAddsHomePhoneHomeMailContact(){
 
@@ -121,6 +132,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(5)
     @Test
     public void userAddsHomePhoneWorkMailContact(){
         String firstName =  faker.name().firstName();
@@ -154,6 +166,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(6)
     @Test
     public void userAddsHomePhoneHomeMobileContact(){
         String firstName =  faker.name().firstName();
@@ -189,7 +202,7 @@ public class ContactManagerTestNG  {
         }
 
     }
-
+    @Order(7)
     @Test
     public void userAddsHomePhoneHomeOtherContact(){
         String firstName =  faker.name().firstName();
@@ -224,6 +237,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(8)
     @Test
     public void userAddsWorkPhoneHomeMailContact(){
         String firstName =  faker.name().firstName();
@@ -258,6 +272,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(9)
     @Test
     public void userAddsWorkPhoneWorkMailContact(){
         String firstName =  faker.name().firstName();
@@ -293,6 +308,7 @@ public class ContactManagerTestNG  {
 
 
     }
+    @Order(10)
     @Test
     public void userAddsWorkPhoneMobileMailContact(){
         String firstName =  faker.name().firstName();
@@ -327,6 +343,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(11)
     @Test
     public void userAddsWorkPhoneWorkOtherContact(){
         String firstName =  faker.name().firstName();
@@ -361,6 +378,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(12)
     @Test
     public void userAddsMobilePhoneHomeMailContact(){
         String firstName =  faker.name().firstName();
@@ -395,6 +413,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(13)
     @Test
     public void userAddsMobilePhoneWorkMailContact(){
         String firstName =  faker.name().firstName();
@@ -429,6 +448,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(14)
     @Test
     public void userAddsMobilePhoneMobileMailContact(){
         String firstName =  faker.name().firstName();
@@ -463,6 +483,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(15)
     @Test
     public void userAddsMobilePhoneOtherMailContact(){
         String firstName =  faker.name().firstName();
@@ -497,6 +518,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(16)
     @Test
     public void userAddsOtherPhoneHomeMailContact(){
         String firstName =  faker.name().firstName();
@@ -531,6 +553,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(17)
     @Test
     public void userAddsOtherPhoneWorkMailContact(){
         String firstName =  faker.name().firstName();
@@ -565,6 +588,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(18)
     @Test
     public void userAddsOtherPhoneMobileMailContact(){
         String firstName =  faker.name().firstName();
@@ -599,6 +623,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(19)
     @Test
     public void userAddsOtherPhoneOtherMailContact(){
         String firstName =  faker.name().firstName();
@@ -633,6 +658,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(20)
     @Test
     public void requiredAreasEmptyContactName(){
         String firstName =  faker.name().firstName();
@@ -661,13 +687,14 @@ public class ContactManagerTestNG  {
             System.out.println("You should enter a name "+e.getMessage());
         }
         try{
-            Assert.assertEquals(elementFinder(firstName).getText(),firstName);
+            Assert.assertEquals(elementFinder(phoneNumber).getText(),phoneNumber);
         }catch(AssertionError e){
             System.out.println("Your expected value did not match with the actual value "+e.getMessage());
         }
 
 
     }
+    @Order(21)
     @Test
     public void requiredAreasEmptyPhone(){
         String firstName =  faker.name().firstName();
@@ -703,6 +730,7 @@ public class ContactManagerTestNG  {
 
 
     }
+    @Order(22)
     @Test
     public void requiredAreasEmptyEmail(){
         String firstName =  faker.name().firstName();
@@ -736,11 +764,12 @@ public class ContactManagerTestNG  {
             System.out.println("Your expected value did not match with the actual value "+e.getMessage());
         }
 
-
     }
+    @Order(23)
     @Test
     public void nameWithSpecialCharacters(){
         String firstName =  faker.name().firstName();
+        String specialName = specialCharacters+firstName;
         String phoneNumber = faker.phoneNumber().phoneNumber();
         FakeValuesService fakeValuesService = new FakeValuesService(
                 new Locale("en-GB"), new RandomService());
@@ -753,7 +782,7 @@ public class ContactManagerTestNG  {
             System.out.println("Couldn't find the element in the home page"+e.getMessage());
         }
         try{
-            addContactPage.getContactNameField().setValue(specialCharacters+firstName);
+            addContactPage.getContactNameField().setValue(specialName);
             addContactPage.getContactPhoneField().setValue(phoneNumber);
             addContactPage.getContactPhoneDrop().click();
             addContactPage.getContactTypeDropOther().click();
@@ -766,13 +795,14 @@ public class ContactManagerTestNG  {
             System.out.println("You should enter a valid name "+e.getMessage());
         }
         try{
-            Assert.assertEquals(elementFinder(firstName).getText(),firstName);
+            Assert.assertEquals(elementFinder(specialName).getText(),specialName);
         }catch(AssertionError e){
             System.out.println("Your expected value did not match with the actual value "+e.getMessage());
         }
 
 
     }
+    @Order(23)
     @Test
     public void emailWithSpecialCharacters(){
         String firstName =  faker.name().firstName();
@@ -781,6 +811,7 @@ public class ContactManagerTestNG  {
                 new Locale("en-GB"), new RandomService());
 
         String email = fakeValuesService.bothify("????##@gmail.com");
+        String specialEmail = specialCharacters+email;
         try {
             //User adds a work account successfully
             homePage.getAddContactBtn().click();
@@ -792,7 +823,7 @@ public class ContactManagerTestNG  {
             addContactPage.getContactPhoneField().setValue(phoneNumber);
             addContactPage.getContactPhoneDrop().click();
             addContactPage.getContactTypeDropOther().click();
-            addContactPage.getContactEmailField().setValue(specialCharacters+email);
+            addContactPage.getContactEmailField().setValue(specialEmail);
             addContactPage.getContactEmailDrop().click();
             addContactPage.getContactTypeDropOther().click();
             addContactPage.getContactSaveBtn().click();
@@ -807,10 +838,12 @@ public class ContactManagerTestNG  {
         }
 
     }
+    @Order(24)
     @Test
     public void phoneWithSpecialCharacters(){
         String firstName =  faker.name().firstName();
         String phoneNumber = faker.phoneNumber().phoneNumber();
+        String specailPhone = specialCharacters+phoneNumber;
         FakeValuesService fakeValuesService = new FakeValuesService(
                 new Locale("en-GB"), new RandomService());
 
@@ -823,7 +856,7 @@ public class ContactManagerTestNG  {
         }
         try{
             addContactPage.getContactNameField().setValue(firstName);
-            addContactPage.getContactPhoneField().setValue(specialCharacters+phoneNumber);
+            addContactPage.getContactPhoneField().setValue(specailPhone);
             addContactPage.getContactPhoneDrop().click();
             addContactPage.getContactTypeDropOther().click();
             addContactPage.getContactEmailField().setValue(email);
@@ -842,6 +875,7 @@ public class ContactManagerTestNG  {
 
 
     }
+    @Order(25)
     @Test
     public void rangeTestingOfNameField(){
         String firstName =  faker.name().firstName();
@@ -871,13 +905,14 @@ public class ContactManagerTestNG  {
             System.out.println("The name is out of range "+e.getMessage());
         }
         try{
-            Assert.assertEquals(elementFinder(firstName).getText(),firstName);
+            Assert.assertEquals(elementFinder(bigName).getText(),bigName);
         }catch(AssertionError e){
             System.out.println("Your expected value did not match with the actual value "+e.getMessage());
         }
 
 
     }
+    @Order(26)
     @Test
     public void rangeTestingOfPhoneField(){
         String firstName =  faker.name().firstName();
@@ -906,13 +941,14 @@ public class ContactManagerTestNG  {
             System.out.println("The phone number is out of range "+e.getMessage());
         }
         try{
-            Assert.assertEquals(elementFinder(firstName).getText(),firstName);
+            Assert.assertEquals(elementFinder(bigPhoneNumber).getText(),bigPhoneNumber);
         }catch(AssertionError e){
             System.out.println("Your expected value did not match with the actual value "+e.getMessage());
         }
 
 
     }
+    @Order(27)
     @Test
     public void rangeTestingOfEmailField(){
         String firstName =  faker.name().firstName();
@@ -942,12 +978,13 @@ public class ContactManagerTestNG  {
             System.out.println("The email is out of range "+e.getMessage());
         }
         try{
-            Assert.assertEquals(elementFinder(firstName).getText(),firstName);
+            Assert.assertEquals(elementFinder(bigEmail).getText(),bigEmail);
         }catch(AssertionError e){
             System.out.println("Your expected value did not match with the actual value "+e.getMessage());
         }
 
     }
+    @Order(28)
     @Test
     public void nameFieldWithNumber(){
         String firstName =  faker.name().firstName();
@@ -976,7 +1013,7 @@ public class ContactManagerTestNG  {
             System.out.println("Cant use number in the name field"+e.getMessage());
         }
         try{
-            Assert.assertEquals(elementFinder(firstName).getText(),firstName);
+            Assert.assertEquals(elementFinder(phoneNumber).getText(),phoneNumber);
         }catch(AssertionError e){
             System.out.println("Your expected value did not match with the actual value "+e.getMessage());
         }
