@@ -5,8 +5,11 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AndroidFindBys;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import lombok.Data;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import testng.ContactManagerTestNG;
+
+
 
 @Data
 public class AddContactPage {
@@ -64,6 +67,8 @@ public class AddContactPage {
     
     @AndroidFindBy(id = "contactList")
     private MobileElement contactList;
+
+
 
 
 

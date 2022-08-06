@@ -10,16 +10,18 @@ User adds a home account successfully -- done but assertion needed
 
 User adds a home account with home email successfully -- all of the cases added but needs assertion
 
-User checks special characters limit for contact phone field -- ??
+User checks required fields for add account page -- done but assertion needed
 
-User checks special characters limit for contact name -- ??
+User checks special characters limit for contact phone field --done but assertion needed
+
+User checks special characters limit for contact name -- done but assertion needed
+
+User checks special characters limit for contact email field --done but assertion needed
+
+User checks number limit for contact phone field -- done but assertion needed
+
+User checks email format for contact email field -- done but assertion needed
+
+User checks whether contact name accepts number and digit -- done but assertion needed
 
 User checks keyboard visibility -- ??
-
-User checks number limit for contact phone field -- ??
-
-User checks email format for contact email field -- ??
-
-User checks required fields for add account page -- ??
-
-User checks whether contact name accepts number and digit -- ??
