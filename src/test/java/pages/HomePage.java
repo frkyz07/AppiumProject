@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import testng.ContactManagerTestNG;
 
 @Data
-public class HomePage extends ContactManagerTestNG {
+public class HomePage {
 
     public HomePage(){
         PageFactory.initElements(new AppiumFieldDecorator(ContactManagerTestNG.Driver), this);
@@ -24,4 +24,7 @@ public class HomePage extends ContactManagerTestNG {
 
     @AndroidFindBy(id = "showInvisible")
     private MobileElement invisibleCheck;
+
+
+
 }
