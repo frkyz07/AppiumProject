@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 import pages.AddContactPage;
 import pages.HomePage;
 import utility.DeviceFarmUtility;
-///usr/libexec/java_home
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -41,7 +41,7 @@ public class ContactManagerTestNG  {
     Faker faker = new Faker();
 
 
-   // in here i create a method that takes the element text and finds the element with that text in the
+   // in here I create a method that takes the element text and finds the element with that text in the
     // homepage.
 
     public MobileElement elementFinder(String elementName){
