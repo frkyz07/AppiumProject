@@ -49,7 +49,7 @@ public class ContactManagerTestNG  {
                .findElement(By.xpath("//android.widget.TextView[@text='"+elementName+"']"));
     }
 
-    // in here we are giving out apk path
+    // in here we are giving our apk path
     public ContactManagerTestNG() {
         oreo = DeviceFarm.ANDROID_OREO.path;
     }
@@ -63,8 +63,8 @@ public class ContactManagerTestNG  {
         homePage = new HomePage();
         addContactPage = new AddContactPage();
     }
-    // in here i write the test in the feature file with every possible options
-    // check the add contant button is working or not
+    // in here I write the tests in the feature file with every possible options
+    // check the add contact button is working or not
     @Order(1)
     @Test
     public void openAddContactOnOreo() throws NullPointerException, InterruptedException {
@@ -679,7 +679,6 @@ public class ContactManagerTestNG  {
     @Order(20)
     @Test
     public void requiredAreasEmptyContactName(){
-        String firstName =  faker.name().firstName();
         String phoneNumber = faker.phoneNumber().phoneNumber();
         FakeValuesService fakeValuesService = new FakeValuesService(
                 new Locale("en-GB"), new RandomService());
@@ -717,7 +716,6 @@ public class ContactManagerTestNG  {
     @Test
     public void requiredAreasEmptyPhone(){
         String firstName =  faker.name().firstName();
-        String phoneNumber = faker.phoneNumber().phoneNumber();
         FakeValuesService fakeValuesService = new FakeValuesService(
                 new Locale("en-GB"), new RandomService());
 
@@ -1014,7 +1012,7 @@ public class ContactManagerTestNG  {
     @Order(28)
     @Test
     public void nameFieldWithNumber(){
-        String firstName =  faker.name().firstName();
+
         String phoneNumber = faker.phoneNumber().phoneNumber();
         FakeValuesService fakeValuesService = new FakeValuesService(
                 new Locale("en-GB"), new RandomService());
