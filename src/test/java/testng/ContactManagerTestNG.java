@@ -43,7 +43,6 @@ public class ContactManagerTestNG  {
 
    // in here I create a method that takes the element text and finds the element with that text in the
     // homepage.
-
     public MobileElement elementFinder(String elementName){
        return (MobileElement) ContactManagerTestNG.Driver
                .findElement(By.xpath("//android.widget.TextView[@text='"+elementName+"']"));
