@@ -30,6 +30,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ContactManagerTestNG  {
 
+    // needed variables added
     public static AppiumDriver<?> Driver;
     HomePage homePage;
     AddContactPage addContactPage;
@@ -40,22 +41,20 @@ public class ContactManagerTestNG  {
     Faker faker = new Faker();
 
 
-
-
-
+   // in here i create a method that takes the element text and finds the element with that text in the
+    // homepage.
 
     public MobileElement elementFinder(String elementName){
        return (MobileElement) ContactManagerTestNG.Driver
                .findElement(By.xpath("//android.widget.TextView[@text='"+elementName+"']"));
     }
+
+    // in here we are giving out apk path
     public ContactManagerTestNG() {
         oreo = DeviceFarm.ANDROID_OREO.path;
-
-
     }
     @BeforeClass
     public void setup() throws MalformedURLException {
-
         capabilities = new DesiredCapabilities();
         capabilities = DeviceFarmUtility.pathToDesiredCapabilitites(this.oreo);
         capabilities.setCapability("app", new File("/Users/farukayaz/Applications/ContactManager.apk").getAbsolutePath());
@@ -64,6 +63,8 @@ public class ContactManagerTestNG  {
         homePage = new HomePage();
         addContactPage = new AddContactPage();
     }
+    // in here i write the test in the feature file with every possible options
+    // check the add contant button is working or not
     @Order(1)
     @Test
     public void openAddContactOnOreo() throws NullPointerException, InterruptedException {
@@ -74,28 +75,29 @@ public class ContactManagerTestNG  {
             System.out.println("Couldnt find the locator"+e.getMessage());
         }
     }
-
+    //User checks title whether it is "Add Contact"
     @Order(2)
     @Test
     public void checkAddContactTitle(){
-        //User checks title whether it is "Add Contact"
+
         try {
             Assert.assertEquals(addContactPage.getTitle().getText(), "Add Contact");
         }catch(AssertionError e){
             System.out.println("Your expected value did not match with the actual value "+e.getMessage());
         }
     }
+    // checking the target account if it is correct or not
     @Order(3)
     @Test
     public void targetAccountCheck(){
         try {
-            //User check the account whether it is correct
             homePage.getAddContactBtn().click();
             Assert.assertEquals(addContactPage.getTargetAccountText().getText(), myMail);
         }catch(Exception e){
             System.out.println("Couldnt find the locator"+e.getMessage());
         }
     }
+    // user adding different type of phone and email
     @Order(4)
     @Test
     public void userAddsHomePhoneHomeMailContact(){
@@ -132,6 +134,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // user adding different type of phone and email
     @Order(5)
     @Test
     public void userAddsHomePhoneWorkMailContact(){
@@ -166,6 +169,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // user adding different type of phone and email
     @Order(6)
     @Test
     public void userAddsHomePhoneHomeMobileContact(){
@@ -202,6 +206,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // user adding different type of phone and email
     @Order(7)
     @Test
     public void userAddsHomePhoneHomeOtherContact(){
@@ -237,6 +242,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // user adding different type of phone and email
     @Order(8)
     @Test
     public void userAddsWorkPhoneHomeMailContact(){
@@ -272,6 +278,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // user adding different type of phone and email
     @Order(9)
     @Test
     public void userAddsWorkPhoneWorkMailContact(){
@@ -308,6 +315,7 @@ public class ContactManagerTestNG  {
 
 
     }
+    // user adding different type of phone and email
     @Order(10)
     @Test
     public void userAddsWorkPhoneMobileMailContact(){
@@ -343,6 +351,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // user adding different type of phone and email
     @Order(11)
     @Test
     public void userAddsWorkPhoneWorkOtherContact(){
@@ -378,6 +387,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // user adding different type of phone and email
     @Order(12)
     @Test
     public void userAddsMobilePhoneHomeMailContact(){
@@ -413,6 +423,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // user adding different type of phone and email
     @Order(13)
     @Test
     public void userAddsMobilePhoneWorkMailContact(){
@@ -448,6 +459,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // user adding different type of phone and email
     @Order(14)
     @Test
     public void userAddsMobilePhoneMobileMailContact(){
@@ -483,6 +495,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // user adding different type of phone and email
     @Order(15)
     @Test
     public void userAddsMobilePhoneOtherMailContact(){
@@ -518,6 +531,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // user adding different type of phone and email
     @Order(16)
     @Test
     public void userAddsOtherPhoneHomeMailContact(){
@@ -553,6 +567,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // user adding different type of phone and email
     @Order(17)
     @Test
     public void userAddsOtherPhoneWorkMailContact(){
@@ -588,6 +603,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // user adding different type of phone and email
     @Order(18)
     @Test
     public void userAddsOtherPhoneMobileMailContact(){
@@ -623,6 +639,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // user adding different type of phone and email
     @Order(19)
     @Test
     public void userAddsOtherPhoneOtherMailContact(){
@@ -658,6 +675,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // User checks required fields for add account page
     @Order(20)
     @Test
     public void requiredAreasEmptyContactName(){
@@ -694,6 +712,7 @@ public class ContactManagerTestNG  {
 
 
     }
+   // User checks required fields for add account page
     @Order(21)
     @Test
     public void requiredAreasEmptyPhone(){
@@ -730,6 +749,7 @@ public class ContactManagerTestNG  {
 
 
     }
+    // User checks required fields for add account page
     @Order(22)
     @Test
     public void requiredAreasEmptyEmail(){
@@ -765,6 +785,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    //User checks special characters limit for contact name
     @Order(23)
     @Test
     public void nameWithSpecialCharacters(){
@@ -802,6 +823,7 @@ public class ContactManagerTestNG  {
 
 
     }
+    //User checks special characters limit for contact email field
     @Order(23)
     @Test
     public void emailWithSpecialCharacters(){
@@ -838,6 +860,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    //User checks special characters limit for contact phone field
     @Order(24)
     @Test
     public void phoneWithSpecialCharacters(){
@@ -875,6 +898,7 @@ public class ContactManagerTestNG  {
 
 
     }
+    //User checks special characters limit for contact name
     @Order(25)
     @Test
     public void rangeTestingOfNameField(){
@@ -912,6 +936,7 @@ public class ContactManagerTestNG  {
 
 
     }
+    //User checks special characters limit for contact phone
     @Order(26)
     @Test
     public void rangeTestingOfPhoneField(){
@@ -948,6 +973,7 @@ public class ContactManagerTestNG  {
 
 
     }
+    //User checks special characters limit for contact email
     @Order(27)
     @Test
     public void rangeTestingOfEmailField(){
@@ -984,6 +1010,7 @@ public class ContactManagerTestNG  {
         }
 
     }
+    // User checks whether contact name accepts number and digit
     @Order(28)
     @Test
     public void nameFieldWithNumber(){
