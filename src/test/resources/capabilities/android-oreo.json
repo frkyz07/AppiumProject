@@ -3,5 +3,5 @@
   "appium:deviceName": "oreo",
   "appium:automationName": "UiAutomator2",
   "appium:udid": "emulator-5554",
-  "appium:avd": "Pixel_4_XL_API_24"
+  "appium:avd": "Pixel_XL_API_26"
 }

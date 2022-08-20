@@ -1,4 +1,4 @@
-package devices;
+package Devices;
 
 public enum DeviceFarm {
     ANDROID_OREO("src/test/resources/capabilities/android-oreo.json");
