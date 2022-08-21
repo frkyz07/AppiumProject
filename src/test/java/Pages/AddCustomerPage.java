@@ -1,5 +1,6 @@
 package Pages;
 
+import Tests.BaseDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AndroidFindBys;
@@ -8,12 +9,15 @@ import lombok.Data;
 import org.openqa.selenium.support.PageFactory;
 import Tests.AddCustomerTest;
 
+import java.net.MalformedURLException;
 
 
 @Data
-public class AddCustomerPage {
-    public AddCustomerPage(){
-        PageFactory.initElements(new AppiumFieldDecorator(AddCustomerTest.Driver), this);
+public class AddCustomerPage extends BaseDriver {
+
+    BaseDriver baseDriver;
+    public AddCustomerPage() throws MalformedURLException {
+        PageFactory.initElements(new AppiumFieldDecorator(baseDriver.Driver), this);
     }
 
 

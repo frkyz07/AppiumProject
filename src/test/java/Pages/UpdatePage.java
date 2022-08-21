@@ -1,5 +1,6 @@
 package Pages;
 
+import Tests.BaseDriver;
 import Tests.SearchCustomerTest;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -7,11 +8,14 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import lombok.Data;
 import org.openqa.selenium.support.PageFactory;
 
+import java.net.MalformedURLException;
+
 @Data
 public class UpdatePage {
 
-    public UpdatePage(){
-        PageFactory.initElements(new AppiumFieldDecorator(SearchCustomerTest.Driver), this);
+    BaseDriver baseDriver;
+    public UpdatePage() throws MalformedURLException {
+        PageFactory.initElements(new AppiumFieldDecorator(baseDriver.Driver), this);
     }
 
     @AndroidFindBy(id = "search_button")

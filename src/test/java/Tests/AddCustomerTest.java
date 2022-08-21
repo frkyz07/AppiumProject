@@ -3,97 +3,123 @@ package Tests;
 
 import Pages.AddCustomerPage;
 import Pages.CustomerSearchPage;
-import Pages.LoginPage;
+
 import Utility.Helper;
 import Devices.DeviceFarm;
-
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
 
-import org.openqa.selenium.remote.DesiredCapabilities;
+import lombok.SneakyThrows;
+import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.NoSuchElementException;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import Pages.HomePage;
-import Utility.DeviceFarmUtility;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
+
 
 public class AddCustomerTest {
 
-    // needed variables added
     public static AppiumDriver<?> Driver;
+    String oreo;
+    Helper helper;
     HomePage homePage;
-    LoginPage loginPage;
     AddCustomerPage addCustomerPage;
     CustomerSearchPage customerSearchPage;
 
-    String oreo;
-    DesiredCapabilities capabilities;
-    Helper helper;
-
-
-
-
-   // in here I create a method that takes the element text and finds the element with that text in the
-    // homepage.
-
-    // in here we are giving our apk path
-    public AddCustomerTest() {
+    public AddCustomerTest() throws MalformedURLException {
         oreo = DeviceFarm.ANDROID_OREO.path;
     }
-    @BeforeClass
+    @BeforeTest
     public void setup() throws MalformedURLException {
-        capabilities = new DesiredCapabilities();
-        capabilities = DeviceFarmUtility.pathToDesiredCapabilitites(this.oreo);
-        capabilities.setCapability("app", new File("/Users/farukayaz/Applications/patikaappium.apk").getAbsolutePath());
-        Driver = new AndroidDriver(new URL("http://127.0.0.1:8080/wd/hub"), capabilities);
-        Driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        homePage = new HomePage();
-        loginPage = new LoginPage();
-        addCustomerPage = new AddCustomerPage();
-        customerSearchPage = new CustomerSearchPage();
-        helper = new Helper();
+        try{
+            BaseDriver baseDriver = new BaseDriver();
+        }catch (RuntimeException e){
+            System.out.println("Couldnt start the Driver"+e);
+        }
 
     }
-    // in here I write the tests in the feature file with every possible options
-    // check the add contact button is working or not
 
-
+    @SneakyThrows
     @Test
     public void addNewCustomerTest(){
-        homePage = new HomePage();
 
-        helper.login();
+        try {
+            helper = new Helper();
+            homePage = new HomePage();
+            addCustomerPage = new AddCustomerPage();
+            customerSearchPage = new CustomerSearchPage();
+        }catch (RuntimeException e ){
+            System.out.println("Run time error "+e);
+        }
 
-        homePage.newCustomerInfo.click();
-        addCustomerPage.customerTelNumber.sendKeys(helper.phone);
-        helper.inPutter(addCustomerPage.customerNameSurname, helper.fullName());
+        try{
+            helper.login();
+        }catch (RuntimeException e){
+            System.out.println("Run time error"+e);
+        }
+        try{
+            homePage.newCustomerInfo.click();
+        }catch (NoSuchElementException e){
+            System.out.println("Couldnt find the locator"+e);
+        }
 
-        helper.scroll(Driver);
+        try{
+            addCustomerPage.customerTelNumber.sendKeys(helper.phone);
+            helper.inPutter(addCustomerPage.customerNameSurname, helper.fullName());
+        }catch (NoSuchElementException e){
+            System.out.println("Coulndt find the locator"+e);
+        }
 
-        helper.inPutter(addCustomerPage.customerNotes, helper.workNumber());
-        helper.inPutter(addCustomerPage.customerAddress, helper.address());
-        addCustomerPage.btnDate.click();
-        addCustomerPage.datePick.click();
-        addCustomerPage.btnReceivedDate.click();
-        addCustomerPage.returnDatePick.click();
-        addCustomerPage.customerInfoSave.click();
+        try{
+            helper.scroll(Driver);
+        }catch (RuntimeException e){
+            System.out.println("Run time error"+e);
+        }
 
-        homePage.searchCustomerInfo.click();
-        customerSearchPage.search_plate.sendKeys(helper.phone);
+        try{
+            helper.inPutter(addCustomerPage.customerNotes, helper.workNumber());
+            helper.inPutter(addCustomerPage.customerAddress, helper.address());
+        }catch (NoSuchElementException e){
+            System.out.println("Couldnt find the locator"+e);
+        }
 
-        Assert.assertEquals(helper.phone,customerSearchPage.textOne.getText());
+       try{
+           addCustomerPage.btnDate.click();
+           addCustomerPage.datePick.click();
+           addCustomerPage.btnReceivedDate.click();
+           addCustomerPage.returnDatePick.click();
+           addCustomerPage.customerInfoSave.click();
+       }catch (NoSuchElementException | ElementNotVisibleException e ){
+           System.out.println("Coulnt find the element or element is not clickable"+e);
+       }
+        try{
+            homePage.searchCustomerInfo.click();
+            customerSearchPage.search_plate.sendKeys(helper.phone);
+        }catch (NoSuchElementException | ElementNotVisibleException e)
+        {
+            System.out.println("Couldnt find the elemenet or element is not clickable");
+        }
+
+        try{
+            Assert.assertEquals(helper.phone,customerSearchPage.textOne.getText());
+        }catch (AssertionError e){
+            System.out.println("Assertion error"+e);
+        }
 
     }
 
     @AfterClass
     public void waiter() throws InterruptedException {
-        Thread.sleep(5000);
+        try{
+            Thread.sleep(5000);
+            Driver.quit();
+        }catch (RuntimeException e){
+            System.out.println("Couldnt quit the driver");
+        }
     }
 
 }
