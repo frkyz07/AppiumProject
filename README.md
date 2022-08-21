@@ -1,10 +1,12 @@
-# Contact Manager Apk
+# PatikaAppium Apk Test Final Project
+
 ## End to End Testing 
 
-### About the ContactManager.apk
-    In this projcet i try to do end to end testing with a mobile application and i use the contact manager apk.
-    In this apk allows to save our contacts in our desired target account.
-    And i try to test every possible scenario with this apk.
+### About the PatikaAppium.apk
+
+    In this projcet i try to do end to end testing with a mobile application and i use the patikaappium apk.
+    In this apk allows to create customers, check existing customers and update customer informations
+    In this app i wrote 5 test cases for this apk.
     
 ### Used Technologies
     
@@ -14,7 +16,7 @@
     - Maven as a software managment tool
     - Appium as a Mobile Application testing tool
     - Appium Inspector for finding locators in the Mobile application
-    - Android Studio and "Nexus_9_API_26" emulotar as a virtual device
+    - Android Studio and "Pixel_XL_API_26" emulotar as a virtual device
     - Oreo as a virtual device android version
     - Javafaker for creating fake variables
     

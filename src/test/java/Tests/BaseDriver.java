@@ -27,6 +27,7 @@ public class BaseDriver {
     DesiredCapabilities capabilities;
     Helper helper;
 
+    // create a base driver function to run our driver in every test
     public BaseDriver() throws MalformedURLException {
 
         oreo = DeviceFarm.ANDROID_OREO.path;

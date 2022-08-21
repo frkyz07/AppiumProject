@@ -32,11 +32,13 @@ public class AddCustomerTest {
     AddCustomerPage addCustomerPage;
     CustomerSearchPage customerSearchPage;
 
+    // log method created
     private static Logger logger = LoggerFactory.getLogger(AddCustomerTest.class);
 
     public AddCustomerTest() throws MalformedURLException {
         oreo = DeviceFarm.ANDROID_OREO.path;
     }
+    // before test initilazed the driver
     @BeforeTest
     public void setup() throws MalformedURLException {
         try{
@@ -49,7 +51,7 @@ public class AddCustomerTest {
         }
 
     }
-
+    // add customer test added
     @SneakyThrows
     @Test
     public void addNewCustomerTest(){

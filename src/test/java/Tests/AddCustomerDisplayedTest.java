@@ -28,6 +28,7 @@ public class AddCustomerDisplayedTest {
     HomePage homePage;
     AddCustomerPage addCustomerPage;
 
+    // Log functions added
     private static Logger logger = LoggerFactory.getLogger(AddCustomerDisplayedTest.class);
 
 
@@ -35,6 +36,7 @@ public class AddCustomerDisplayedTest {
     public AddCustomerDisplayedTest() throws MalformedURLException {
         oreo = DeviceFarm.ANDROID_OREO.path;
     }
+    // setting basedriver before test
     @BeforeTest
     public void setup() throws MalformedURLException {
         try{
@@ -45,10 +47,12 @@ public class AddCustomerDisplayedTest {
             logger.error("Base Driver could not initilaze");
         }
     }
+    // Add new Customer test craeted
     @SneakyThrows
     @Test
     public void addNewCustomerTest(){
 
+        // driver initilazed
         try{
             helper = new Helper();
             homePage = new HomePage();
@@ -58,7 +62,7 @@ public class AddCustomerDisplayedTest {
             System.out.println("Run time error "+e);
             logger.error("Pages could not initilaze");
         }
-
+        // login function called
         try{
             helper.login();
             logger.info("Login is successfull");
@@ -66,7 +70,7 @@ public class AddCustomerDisplayedTest {
             System.out.println("Run time error"+e);
             logger.error("Login is not successfull");
         }
-
+        // cicked in the new customer button
         try {
             homePage.newCustomerInfo.click();
             logger.info("New customer page opened");
@@ -74,7 +78,7 @@ public class AddCustomerDisplayedTest {
             System.out.println("Couldnt find the element"+e);
             logger.error("New customer page could not opened");
         }
-
+        // assertions added
         try {
             Assert.assertTrue(addCustomerPage.customerTelNumber.isDisplayed());
             Assert.assertTrue(addCustomerPage.customerNameSurname.isDisplayed());
@@ -85,7 +89,7 @@ public class AddCustomerDisplayedTest {
             logger.error("Assertions didnt passed");
         }
     }
-
+    // after test driver is closed
     @AfterClass
     public void waiter() throws InterruptedException {
         try{
