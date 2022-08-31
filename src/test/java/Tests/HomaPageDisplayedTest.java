@@ -3,8 +3,9 @@ package Tests;
 import Devices.DeviceFarm;
 import Pages.AddCustomerPage;
 import Pages.HomePage;
+import Utility.BaseDriver;
 import Utility.Helper;
-import io.appium.java_client.AppiumDriver;
+
 import lombok.SneakyThrows;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
@@ -17,48 +18,32 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 
-public class HomaPageDisplayedTest {
-
-    public static AppiumDriver<?> Driver;
-    String oreo;
-    Helper helper;
-    HomePage homePage;
-    AddCustomerPage addCustomerPage;
+public class HomaPageDisplayedTest extends BaseDriver {
 
     private static Logger logger = LoggerFactory.getLogger(HomaPageDisplayedTest.class);
-
-
 
     // in here we are giving our apk path
     public HomaPageDisplayedTest() throws MalformedURLException {
         oreo = DeviceFarm.ANDROID_OREO.path;
     }
-    @BeforeTest
+   /* @BeforeTest
     public void setup() throws MalformedURLException {
         try{
-            BaseDriver baseDriver = new BaseDriver();
+            helper = new Helper();
+            homePage = new HomePage();
+            addCustomerPage = new AddCustomerPage();
             logger.info("Driver initilazed");
         }catch (RuntimeException e){
             System.out.println("Couldnt start the Driver"+e);
             logger.info("Driver could not initilazed");
         }
-    }
+    }*/
     @SneakyThrows
     @Test
     public void addNewCustomerTest(){
 
         try{
-            helper = new Helper();
-            homePage = new HomePage();
-            addCustomerPage = new AddCustomerPage();
-            logger.info("Pages initilazed");
-        }catch (RuntimeException e ){
-            System.out.println("Run time error "+e);
-            logger.error("Pages are not initilazed");
-        }
-
-        try{
-            helper.login();
+            loginPage.login();
             logger.info("Login is succesfull");
         }catch (RuntimeException e){
             System.out.println("Run time error"+e);

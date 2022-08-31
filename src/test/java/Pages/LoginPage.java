@@ -1,7 +1,7 @@
 package Pages;
 
 
-import Tests.BaseDriver;
+import Utility.BaseDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -10,13 +10,14 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.net.MalformedURLException;
 
+import static Utility.BaseDriver.helper;
+
 @Data
 public class LoginPage {
 
-    BaseDriver baseDriver;
 
     public LoginPage() throws MalformedURLException {
-        PageFactory.initElements(new AppiumFieldDecorator(baseDriver.Driver), this);
+        PageFactory.initElements(new AppiumFieldDecorator(BaseDriver.Driver), this);
     }
 
     @AndroidFindBy(id = "signInEmailTextInput")
@@ -27,4 +28,12 @@ public class LoginPage {
 
     @AndroidFindBy(id = "signInButton")
     public MobileElement signInButton;
+
+    public void login() throws MalformedURLException {
+
+
+        helper.inPutter(getSignInEmailTextInput(),helper.eMail );
+        helper.inPutter(getSignInPasswordTextInput(),helper.password);
+        signInButton.click();
+    }
 }

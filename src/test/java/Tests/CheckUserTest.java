@@ -2,8 +2,9 @@ package Tests;
 
 import Devices.DeviceFarm;
 import Pages.*;
+import Utility.BaseDriver;
 import Utility.Helper;
-import io.appium.java_client.AppiumDriver;
+
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
@@ -16,47 +17,31 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 
-public class CheckUserTest {
-    public static AppiumDriver<?> Driver;
-
-    HomePage homePage;
-    AddCustomerPage addCustomerPage;
-    UpdatePage updatePage;
-    CustomerSearchPage customerSearchPage;
-    String oreo;
-    Helper helper;
-
+public class CheckUserTest extends BaseDriver{
     private static Logger logger = LoggerFactory.getLogger(CheckUserTest.class);
 
     public CheckUserTest() throws MalformedURLException {
         oreo = DeviceFarm.ANDROID_OREO.path;
     }
+    /*
     @BeforeClass
     public void setup() throws MalformedURLException {
         try{
-            BaseDriver baseDriver = new BaseDriver();
-            logger.info("Drive initilazed");
-        }catch (RuntimeException e){
-            System.out.println("Couldnt start the Driver"+e);
-            logger.error("Driver could not initilazed");
-        }
-    }
-    @Test
-    public void UpdateUserInformationTest() throws MalformedURLException {
-         try{
             helper = new Helper();
             homePage = new HomePage();
             addCustomerPage = new AddCustomerPage();
             customerSearchPage = new CustomerSearchPage();
             updatePage = new UpdatePage();
-            logger.info("Pages are initilazed");
-         }catch (RuntimeException e ){
-            System.out.println("Run time error "+e);
-            logger.error("Pages are not initilazed");
-          }
-
+            logger.info("Drive initilazed");
+        }catch (RuntimeException e){
+            System.out.println("Couldnt start the Driver"+e);
+            logger.error("Driver could not initilazed");
+        }
+    }*/
+    @Test
+    public void UpdateUserInformationTest() throws MalformedURLException {
         try{
-            helper.login();
+            loginPage.login();
             logger.info("Login is successfull");
         }catch (RuntimeException e){
             System.out.println("Run time error"+e);

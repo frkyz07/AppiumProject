@@ -4,9 +4,10 @@ package Tests;
 import Pages.AddCustomerPage;
 import Pages.CustomerSearchPage;
 
+import Utility.BaseDriver;
 import Utility.Helper;
 import Devices.DeviceFarm;
-import io.appium.java_client.AppiumDriver;
+
 
 import lombok.SneakyThrows;
 import org.openqa.selenium.ElementNotVisibleException;
@@ -17,20 +18,14 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import Pages.HomePage;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
+
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 
 
-public class AddCustomerTest {
-
-    public static AppiumDriver<?> Driver;
-    String oreo;
-    Helper helper;
-    HomePage homePage;
-    AddCustomerPage addCustomerPage;
-    CustomerSearchPage customerSearchPage;
+public class AddCustomerTest extends BaseDriver{
 
     // log method created
     private static Logger logger = LoggerFactory.getLogger(AddCustomerTest.class);
@@ -39,10 +34,14 @@ public class AddCustomerTest {
         oreo = DeviceFarm.ANDROID_OREO.path;
     }
     // before test initilazed the driver
-    @BeforeTest
+    /*
+    @BeforeClass
     public void setup() throws MalformedURLException {
         try{
-            BaseDriver baseDriver = new BaseDriver();
+            helper = new Helper();
+            homePage = new HomePage();
+            addCustomerPage = new AddCustomerPage();
+            customerSearchPage = new CustomerSearchPage();
             logger.info("Driver initilaze");
 
         }catch (RuntimeException e){
@@ -50,25 +49,14 @@ public class AddCustomerTest {
             logger.error("Driver could not initilaze");
         }
 
-    }
+    }*/
     // add customer test added
     @SneakyThrows
     @Test
     public void addNewCustomerTest(){
 
-        try {
-            helper = new Helper();
-            homePage = new HomePage();
-            addCustomerPage = new AddCustomerPage();
-            customerSearchPage = new CustomerSearchPage();
-            logger.info("Pages initilazed");
-        }catch (RuntimeException e ){
-            System.out.println("Run time error "+e);
-            logger.error("Pages could not initilazed");
-        }
-
         try{
-            helper.login();
+            loginPage.login();
             logger.info("Login is succesfull");
         }catch (RuntimeException e){
             System.out.println("Run time error"+e);

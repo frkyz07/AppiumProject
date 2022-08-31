@@ -1,14 +1,13 @@
-package Tests;
+package Utility;
 
 import Devices.DeviceFarm;
-import Pages.CustomerSearchPage;
-import Pages.HomePage;
-import Pages.LoginPage;
+import Pages.*;
 import Utility.DeviceFarmUtility;
 import Utility.Helper;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.BeforeClass;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -20,12 +19,14 @@ import java.util.concurrent.TimeUnit;
 public class BaseDriver {
 
     public static AppiumDriver<?> Driver;
-    HomePage homePage;
-    LoginPage loginPage;
-    CustomerSearchPage customerSearchPage;
-    String oreo;
-    DesiredCapabilities capabilities;
-    Helper helper;
+    public static HomePage homePage;
+    public static LoginPage loginPage;
+    public static CustomerSearchPage customerSearchPage;
+    public static AddCustomerPage addCustomerPage;
+    public static UpdatePage updatePage;
+    public static String oreo;
+    public static DesiredCapabilities capabilities;
+    public static Helper helper;
 
     // create a base driver function to run our driver in every test
     public BaseDriver() throws MalformedURLException {
@@ -41,6 +42,7 @@ public class BaseDriver {
         loginPage = new LoginPage();
         customerSearchPage = new CustomerSearchPage();
         helper = new Helper();
+        updatePage = new UpdatePage();
     }
 
 }

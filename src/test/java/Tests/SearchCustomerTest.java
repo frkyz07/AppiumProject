@@ -3,8 +3,9 @@ package Tests;
 import Devices.DeviceFarm;
 import Pages.*;
 
+import Utility.BaseDriver;
 import Utility.Helper;
-import io.appium.java_client.AppiumDriver;
+
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
 
@@ -21,43 +22,26 @@ import java.net.MalformedURLException;
 
 public class SearchCustomerTest extends BaseDriver {
 
-    public static AppiumDriver<?> Driver;
-
-    String oreo;
-    Helper helper;
-    HomePage homePage;
-    CustomerSearchPage customerSearchPage;
-
     private static Logger logger = LoggerFactory.getLogger(SearchCustomerTest.class);
     public SearchCustomerTest() throws MalformedURLException {
         oreo = DeviceFarm.ANDROID_OREO.path;    }
 
 
-    @BeforeClass
+  /*  @BeforeClass
     public void setup() throws MalformedURLException {
         try{
-            BaseDriver baseDriver = new BaseDriver();
+
             logger.info("Driver initilaze");
         }catch (RuntimeException e){
             System.out.println("Couldnt start the Driver"+e);
             logger.error("Driver Could not initilaze");
         }
-    }
+    }*/
     @Test
     public void addCustomerTest() throws MalformedURLException {
 
         try{
-            helper = new Helper();
-            homePage = new HomePage();
-            customerSearchPage = new CustomerSearchPage();
-            logger.info("Pages initilazed");
-        }catch (RuntimeException e ){
-            System.out.println("Run time error "+e);
-            logger.error("Pages could not initilazed");
-        }
-
-        try{
-            helper.login();
+            loginPage.login();
             logger.info("Login is successfull");
         }catch (RuntimeException e){
             System.out.println("Run time error"+e);

@@ -1,7 +1,6 @@
 package Utility;
 
 import Pages.LoginPage;
-import Tests.BaseDriver;
 import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
@@ -19,7 +18,6 @@ import java.util.Locale;
 @Data
 public class Helper {
     Faker faker = new Faker();
-    LoginPage loginPage;
     BaseDriver baseDriver;
 
     FakeValuesService fakeValuesService = new FakeValuesService(
@@ -49,13 +47,7 @@ public class Helper {
         int scrollEnd = (int) (dimensions.getHeight() * 0.5);
         driver.swipe(200, Startpoint,200,scrollEnd,2000);
     }
-    public void login() throws MalformedURLException {
 
-        loginPage = new LoginPage();
-       inPutter(loginPage.getSignInEmailTextInput(),eMail );
-       inPutter(loginPage.getSignInPasswordTextInput(),password);
-       loginPage.signInButton.click();
-    }
 
 }
 
