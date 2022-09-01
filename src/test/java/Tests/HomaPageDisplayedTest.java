@@ -3,6 +3,7 @@ package Tests;
 import Devices.DeviceFarm;
 import Pages.AddCustomerPage;
 import Pages.HomePage;
+import Pages.LoginPage;
 import Utility.BaseDriver;
 import Utility.Helper;
 
@@ -18,7 +19,7 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 
-public class HomaPageDisplayedTest extends BaseDriver {
+public class HomaPageDisplayedTest extends BaseTest {
 
     private static Logger logger = LoggerFactory.getLogger(HomaPageDisplayedTest.class);
 
@@ -26,18 +27,18 @@ public class HomaPageDisplayedTest extends BaseDriver {
     public HomaPageDisplayedTest() throws MalformedURLException {
         oreo = DeviceFarm.ANDROID_OREO.path;
     }
-   /* @BeforeTest
+    @BeforeTest
     public void setup() throws MalformedURLException {
         try{
-            helper = new Helper();
             homePage = new HomePage();
             addCustomerPage = new AddCustomerPage();
+            loginPage = new LoginPage();
             logger.info("Driver initilazed");
         }catch (RuntimeException e){
             System.out.println("Couldnt start the Driver"+e);
             logger.info("Driver could not initilazed");
         }
-    }*/
+    }
     @SneakyThrows
     @Test
     public void addNewCustomerTest(){

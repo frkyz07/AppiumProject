@@ -1,6 +1,5 @@
 package Utility;
 
-import Pages.LoginPage;
 import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
@@ -23,7 +22,7 @@ public class Helper {
     FakeValuesService fakeValuesService = new FakeValuesService(
             new Locale("en-GB"), new RandomService());
 
-    public Helper() throws MalformedURLException {
+    public Helper(AppiumDriver driver) throws MalformedURLException {
         PageFactory.initElements(new AppiumFieldDecorator(baseDriver.Driver), this);
     }
 

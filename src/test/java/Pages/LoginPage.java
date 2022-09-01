@@ -10,7 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.net.MalformedURLException;
 
-import static Utility.BaseDriver.helper;
+import static Tests.BaseTest.helper;
+
 
 @Data
 public class LoginPage {
@@ -30,8 +31,6 @@ public class LoginPage {
     public MobileElement signInButton;
 
     public void login() throws MalformedURLException {
-
-
         helper.inPutter(getSignInEmailTextInput(),helper.eMail );
         helper.inPutter(getSignInPasswordTextInput(),helper.password);
         signInButton.click();

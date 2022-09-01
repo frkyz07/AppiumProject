@@ -20,23 +20,25 @@ import java.net.MalformedURLException;
 
 
 
-public class SearchCustomerTest extends BaseDriver {
+public class SearchCustomerTest extends BaseTest {
 
     private static Logger logger = LoggerFactory.getLogger(SearchCustomerTest.class);
     public SearchCustomerTest() throws MalformedURLException {
         oreo = DeviceFarm.ANDROID_OREO.path;    }
 
 
-  /*  @BeforeClass
+    @BeforeClass
     public void setup() throws MalformedURLException {
         try{
-
+            homePage = new HomePage();
+            customerSearchPage = new CustomerSearchPage();
+            loginPage = new LoginPage();
             logger.info("Driver initilaze");
         }catch (RuntimeException e){
             System.out.println("Couldnt start the Driver"+e);
             logger.error("Driver Could not initilaze");
         }
-    }*/
+    }
     @Test
     public void addCustomerTest() throws MalformedURLException {
 

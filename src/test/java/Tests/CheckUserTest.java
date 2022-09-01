@@ -17,27 +17,27 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 
-public class CheckUserTest extends BaseDriver{
+public class CheckUserTest extends BaseTest{
     private static Logger logger = LoggerFactory.getLogger(CheckUserTest.class);
 
     public CheckUserTest() throws MalformedURLException {
         oreo = DeviceFarm.ANDROID_OREO.path;
     }
-    /*
+
     @BeforeClass
     public void setup() throws MalformedURLException {
         try{
-            helper = new Helper();
             homePage = new HomePage();
             addCustomerPage = new AddCustomerPage();
             customerSearchPage = new CustomerSearchPage();
             updatePage = new UpdatePage();
+            loginPage = new LoginPage();
             logger.info("Drive initilazed");
         }catch (RuntimeException e){
             System.out.println("Couldnt start the Driver"+e);
             logger.error("Driver could not initilazed");
         }
-    }*/
+    }
     @Test
     public void UpdateUserInformationTest() throws MalformedURLException {
         try{

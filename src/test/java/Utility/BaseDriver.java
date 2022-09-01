@@ -6,6 +6,7 @@ import Utility.DeviceFarmUtility;
 import Utility.Helper;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeClass;
 
@@ -19,17 +20,12 @@ import java.util.concurrent.TimeUnit;
 public class BaseDriver {
 
     public static AppiumDriver<?> Driver;
-    public static HomePage homePage;
-    public static LoginPage loginPage;
-    public static CustomerSearchPage customerSearchPage;
-    public static AddCustomerPage addCustomerPage;
-    public static UpdatePage updatePage;
     public static String oreo;
     public static DesiredCapabilities capabilities;
-    public static Helper helper;
+
 
     // create a base driver function to run our driver in every test
-    public BaseDriver() throws MalformedURLException {
+    public AppiumDriver BaseDriver() throws MalformedURLException {
 
         oreo = DeviceFarm.ANDROID_OREO.path;
         capabilities = new DesiredCapabilities();
@@ -38,11 +34,7 @@ public class BaseDriver {
         capabilities.setCapability("app", new File("/Users/farukayaz/Applications/patikaappium.apk").getAbsolutePath());
         Driver = new AndroidDriver(new URL("http://127.0.0.1:8080/wd/hub"), capabilities);
         Driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        homePage = new HomePage();
-        loginPage = new LoginPage();
-        customerSearchPage = new CustomerSearchPage();
-        helper = new Helper();
-        updatePage = new UpdatePage();
+        return Driver;
     }
 
 }
