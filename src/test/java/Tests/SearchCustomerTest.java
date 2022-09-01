@@ -3,9 +3,6 @@ package Tests;
 import Devices.DeviceFarm;
 import Pages.*;
 
-import Utility.BaseDriver;
-import Utility.Helper;
-
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
 
@@ -23,9 +20,8 @@ import java.net.MalformedURLException;
 public class SearchCustomerTest extends BaseTest {
 
     private static Logger logger = LoggerFactory.getLogger(SearchCustomerTest.class);
-    public SearchCustomerTest() throws MalformedURLException {
+    public SearchCustomerTest(){
         oreo = DeviceFarm.ANDROID_OREO.path;    }
-
 
     @BeforeClass
     public void setup() throws MalformedURLException {
@@ -33,10 +29,9 @@ public class SearchCustomerTest extends BaseTest {
             homePage = new HomePage();
             customerSearchPage = new CustomerSearchPage();
             loginPage = new LoginPage();
-            logger.info("Driver initilaze");
+            logger.info("Driver initialize");
         }catch (RuntimeException e){
-            System.out.println("Couldnt start the Driver"+e);
-            logger.error("Driver Could not initilaze");
+            logger.error("Driver Could not initialize "+e);
         }
     }
     @Test
@@ -44,40 +39,42 @@ public class SearchCustomerTest extends BaseTest {
 
         try{
             loginPage.login();
-            logger.info("Login is successfull");
+            logger.info("Login is successful");
         }catch (RuntimeException e){
-            System.out.println("Run time error"+e);
-            logger.error("Login is not successfull");
+            logger.error("Login is not successful "+e);
         }
 
         try{
             homePage.searchCustomerInfo.click();
             logger.info("Search customer page opened");
         }catch (NoSuchElementException | ElementNotVisibleException e){
-                System.out.println("Couldnt find the element"+e);
-                logger.error("Search customer could not opened");
+                logger.error("Search customer could not opened "+e);
         }
 
         try{
             customerSearchPage.search_plate.sendKeys(helper.phone);
             logger.info("Phone number send to search field");
         }catch (NoSuchElementException | ElementNotVisibleException e){
-            System.out.println("Couldnt find the element"+e);
-            logger.error("Phone number could not send to search filed");
+            logger.error("Phone number could not send to search filed "+e);
     }
 
         try{
             Assert.assertEquals(helper.phone,customerSearchPage.textOne.getText());
             logger.info("Assertions passed");
         }catch(AssertionError e){
-            System.out.println("Assertion Error"+e);
-            logger.error("Assertion could not passed");
+            logger.error("Assertion could not passed "+e);
     }
     }
 
     @AfterClass
     public void waiter() throws InterruptedException {
-        Thread.sleep(5000);
+        try{
+            Thread.sleep(5000);
+            Driver.quit();
+            logger.info("Driver closed");
+        }catch (RuntimeException e){
+            logger.error("Driver could not closed "+e);
+        }
     }
     
 }

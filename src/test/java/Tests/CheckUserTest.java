@@ -2,8 +2,6 @@ package Tests;
 
 import Devices.DeviceFarm;
 import Pages.*;
-import Utility.BaseDriver;
-import Utility.Helper;
 
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.Keys;
@@ -20,7 +18,7 @@ import java.net.MalformedURLException;
 public class CheckUserTest extends BaseTest{
     private static Logger logger = LoggerFactory.getLogger(CheckUserTest.class);
 
-    public CheckUserTest() throws MalformedURLException {
+    public CheckUserTest(){
         oreo = DeviceFarm.ANDROID_OREO.path;
     }
 
@@ -32,27 +30,24 @@ public class CheckUserTest extends BaseTest{
             customerSearchPage = new CustomerSearchPage();
             updatePage = new UpdatePage();
             loginPage = new LoginPage();
-            logger.info("Drive initilazed");
+            logger.info("Drive initialized");
         }catch (RuntimeException e){
-            System.out.println("Couldnt start the Driver"+e);
-            logger.error("Driver could not initilazed");
+            logger.error("Driver could not initialized "+e);
         }
     }
     @Test
     public void UpdateUserInformationTest() throws MalformedURLException {
         try{
             loginPage.login();
-            logger.info("Login is successfull");
+            logger.info("Login is successful");
         }catch (RuntimeException e){
-            System.out.println("Run time error"+e);
-            logger.error("Logins is not successfull");
+            logger.error("Logins is not successful"+e);
         }
         try{
             updatePage.search_button.click();
             logger.info("Search button clicked");
         }catch (NoSuchElementException | ElementNotVisibleException e){
-            System.out.println("Couldnt find the element"+e);
-            logger.error("Search button is not clicked");
+            logger.error("Search button is not clicked "+e);
         }
 
         try{
@@ -60,8 +55,7 @@ public class CheckUserTest extends BaseTest{
             updatePage.search_plate.sendKeys(Keys.ENTER);
             logger.info("Search text searched");
         }catch (NoSuchElementException | ElementNotVisibleException e){
-            System.out.println("Couldnt find the element"+e);
-            logger.error("Search text couldnt searched");
+            logger.error("Search text couldn't searched "+e);
         }
 
         try{
@@ -69,8 +63,7 @@ public class CheckUserTest extends BaseTest{
             Assert.assertEquals(helper.phone,customerSearchPage.textOne.getText());
             logger.info("Assertion passed");
         }catch (AssertionError e){
-            System.out.println("Assertion Error"+e);
-            logger.error("Assertion could not passed");
+            logger.error("Assertion could not passed "+e);
         }
 
     }
@@ -82,8 +75,7 @@ public class CheckUserTest extends BaseTest{
             Driver.quit();
             logger.info("Drive closed");
         }catch (RuntimeException e){
-            System.out.println("Couldnt quit the driver");
-            logger.error("Driver could not clossed");
+            logger.error("Driver could not closed "+e);
         }
     }
 

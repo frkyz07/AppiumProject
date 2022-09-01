@@ -4,8 +4,6 @@ import Devices.DeviceFarm;
 import Pages.AddCustomerPage;
 import Pages.HomePage;
 import Pages.LoginPage;
-import Utility.BaseDriver;
-import Utility.Helper;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
@@ -25,10 +23,10 @@ public class AddCustomerDisplayedTest extends BaseTest {
 
 
     // in here we are giving our apk path
-    public AddCustomerDisplayedTest() throws MalformedURLException {
+    public AddCustomerDisplayedTest(){
         oreo = DeviceFarm.ANDROID_OREO.path;
     }
-    // setting basedriver before test
+    // setting base driver before test
 
     @BeforeClass
     public void setup() throws MalformedURLException {
@@ -49,18 +47,17 @@ public class AddCustomerDisplayedTest extends BaseTest {
         // login function called
         try{
             loginPage.login();
-            logger.info("Login is successfull");
+            logger.info("Login is successful");
         }catch (RuntimeException | MalformedURLException e){
-            System.out.println("Run time error"+e);
-            logger.error("Login is not successfull");
+            System.out.println("Run time error");
+            logger.error("Login is not successful "+e);
         }
         // cicked in the new customer button
         try {
             homePage.newCustomerInfo.click();
             logger.info("New customer page opened");
         }catch (WebDriverException e){
-            System.out.println("Couldnt find the element"+e);
-            logger.error("New customer page could not opened");
+            logger.error("New customer page could not opened "+e);
         }
         // assertions added
         try {
@@ -69,8 +66,7 @@ public class AddCustomerDisplayedTest extends BaseTest {
             Assert.assertTrue(addCustomerPage.customerAddress.isDisplayed());
             logger.info("Assertions passed");
         }catch (NoSuchElementException | AssertionError e){
-            System.out.println("Assertion error or Cant find the locators"+e);
-            logger.error("Assertions didnt passed");
+            logger.error("Assertions didn't passed "+e);
         }
     }
     // after test driver is closed
@@ -81,8 +77,7 @@ public class AddCustomerDisplayedTest extends BaseTest {
             Driver.quit();
             logger.info("Driver closed");
         }catch (RuntimeException e){
-            System.out.println("Couldnt quit the driver");
-            logger.error("Driver couldnt closed");
+            logger.error("Driver couldn't closed "+e);
         }
     }
 }

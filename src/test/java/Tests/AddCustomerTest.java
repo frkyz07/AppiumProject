@@ -5,8 +5,6 @@ import Pages.AddCustomerPage;
 import Pages.CustomerSearchPage;
 
 import Pages.LoginPage;
-import Utility.BaseDriver;
-import Utility.Helper;
 import Devices.DeviceFarm;
 
 
@@ -31,7 +29,7 @@ public class AddCustomerTest extends BaseTest{
     // log method created
     private static Logger logger = LoggerFactory.getLogger(AddCustomerTest.class);
 
-    public AddCustomerTest() throws MalformedURLException {
+    public AddCustomerTest(){
         oreo = DeviceFarm.ANDROID_OREO.path;
     }
     // before test initilazed the driver
@@ -46,8 +44,7 @@ public class AddCustomerTest extends BaseTest{
             logger.info("Driver initilaze");
 
         }catch (RuntimeException e){
-            System.out.println("Couldnt start the Driver"+e);
-            logger.error("Driver could not initilaze");
+            logger.error("Driver could not initialize "+e);
         }
 
     }
@@ -58,17 +55,15 @@ public class AddCustomerTest extends BaseTest{
 
         try{
             loginPage.login();
-            logger.info("Login is succesfull");
+            logger.info("Login is successful");
         }catch (RuntimeException e){
-            System.out.println("Run time error"+e);
-            logger.error("Login is not succesfull");
+            logger.error("Login is not successful "+e);
         }
         try{
             homePage.newCustomerInfo.click();
             logger.info("New customer page opened");
         }catch (NoSuchElementException e){
-            System.out.println("Couldnt find the locator"+e);
-            logger.error("New customer page could not opened");
+            logger.error("New customer page could not opened "+e);
         }
 
         try{
@@ -76,25 +71,22 @@ public class AddCustomerTest extends BaseTest{
             helper.inPutter(addCustomerPage.customerNameSurname, helper.fullName());
             logger.info("Customer information added");
         }catch (NoSuchElementException e){
-            System.out.println("Coulndt find the locator"+e);
-            logger.error("Customer information could not added");
+            logger.error("Customer information could not added "+e);
         }
 
         try{
             helper.scroll(Driver);
             logger.info("Scroll worked");
         }catch (RuntimeException e){
-            System.out.println("Run time error"+e);
-            logger.error("Scroll could not worked");
+            logger.error("Scroll could not worked "+e);
         }
 
         try{
             helper.inPutter(addCustomerPage.customerNotes, helper.workNumber());
             helper.inPutter(addCustomerPage.customerAddress, helper.address());
-            logger.info("Customer informations added");
+            logger.info("Customer information's added");
         }catch (NoSuchElementException e){
-            System.out.println("Couldnt find the locator"+e);
-            logger.error("Customer informations could not added");
+            logger.error("Customer information's could not added "+e);
         }
 
        try{
@@ -105,8 +97,7 @@ public class AddCustomerTest extends BaseTest{
            addCustomerPage.customerInfoSave.click();
            logger.info("Date are added");
        }catch (NoSuchElementException | ElementNotVisibleException e ){
-           System.out.println("Coulnt find the element or element is not clickable"+e);
-           logger.error("Date are not added");
+           logger.error("Date are not added "+e);
        }
         try{
             homePage.searchCustomerInfo.click();
@@ -114,16 +105,14 @@ public class AddCustomerTest extends BaseTest{
             logger.info("Input send to the field");
         }catch (NoSuchElementException | ElementNotVisibleException e)
         {
-            System.out.println("Couldnt find the elemenet or element is not clickable");
-            logger.error("Input could not sended");
+            logger.error("Input could not sent "+e);
         }
 
         try{
             Assert.assertEquals(helper.phone,customerSearchPage.textOne.getText());
             logger.info("Assertions passed");
         }catch (AssertionError e){
-            System.out.println("Assertion error"+e);
-            logger.error("Assertions could not passed");
+            logger.error("Assertions could not passed "+e);
         }
 
     }
@@ -135,8 +124,7 @@ public class AddCustomerTest extends BaseTest{
             Driver.quit();
             logger.info("Driver closed");
         }catch (RuntimeException e){
-            System.out.println("Couldnt quit the driver");
-            logger.error("Driver could not closed");
+            logger.error("Driver could not closed "+e);
         }
     }
 
