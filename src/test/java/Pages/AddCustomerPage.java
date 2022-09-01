@@ -19,7 +19,6 @@ public class AddCustomerPage {
         PageFactory.initElements(new AppiumFieldDecorator(BaseDriver.Driver), this);
     }
 
-
     @AndroidFindBy(id = "newCustomerInfo")
     public MobileElement newCustomerInfo;
 
@@ -58,11 +57,5 @@ public class AddCustomerPage {
 
     @AndroidFindBy(id = "customerInfoSave")
     public MobileElement  customerInfoSave;
-
-
-
-
-
-
 
 }

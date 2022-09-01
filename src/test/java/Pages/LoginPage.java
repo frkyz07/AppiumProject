@@ -20,7 +20,6 @@ public class LoginPage {
     public LoginPage() throws MalformedURLException {
         PageFactory.initElements(new AppiumFieldDecorator(BaseDriver.Driver), this);
     }
-
     @AndroidFindBy(id = "signInEmailTextInput")
     public MobileElement signInEmailTextInput;
 

@@ -8,7 +8,7 @@ import Pages.LoginPage;
 import Devices.DeviceFarm;
 
 
-import lombok.SneakyThrows;
+import io.qameta.allure.Description;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
 
@@ -32,7 +32,7 @@ public class AddCustomerTest extends BaseTest{
     public AddCustomerTest(){
         oreo = DeviceFarm.ANDROID_OREO.path;
     }
-    // before test initilazed the driver
+    // before test initialized the driver
 
     @BeforeClass
     public void setup() throws MalformedURLException {
@@ -41,7 +41,7 @@ public class AddCustomerTest extends BaseTest{
             addCustomerPage = new AddCustomerPage();
             customerSearchPage = new CustomerSearchPage();
             loginPage = new LoginPage();
-            logger.info("Driver initilaze");
+            logger.info("Driver initialize");
 
         }catch (RuntimeException e){
             logger.error("Driver could not initialize "+e);
@@ -49,14 +49,14 @@ public class AddCustomerTest extends BaseTest{
 
     }
     // add customer test added
-    @SneakyThrows
     @Test
+    @Description("addNewCustomerTest")
     public void addNewCustomerTest(){
 
         try{
             loginPage.login();
             logger.info("Login is successful");
-        }catch (RuntimeException e){
+        }catch (RuntimeException | MalformedURLException e){
             logger.error("Login is not successful "+e);
         }
         try{

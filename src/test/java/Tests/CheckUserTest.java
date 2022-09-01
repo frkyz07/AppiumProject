@@ -3,6 +3,7 @@ package Tests;
 import Devices.DeviceFarm;
 import Pages.*;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
@@ -36,6 +37,7 @@ public class CheckUserTest extends BaseTest{
         }
     }
     @Test
+    @Description("UpdateUserInformationTest")
     public void UpdateUserInformationTest() throws MalformedURLException {
         try{
             loginPage.login();
@@ -67,7 +69,6 @@ public class CheckUserTest extends BaseTest{
         }
 
     }
-
     @AfterClass
     public void waiter() throws InterruptedException {
         try{

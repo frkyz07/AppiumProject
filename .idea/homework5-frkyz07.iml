@@ -17,6 +17,10 @@
     <orderEntry type="library" scope="TEST" name="Maven: com.beust:jcommander:1.82" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.webjars:jquery:3.6.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.24" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: io.qameta.allure:allure-testng:2.18.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: io.qameta.allure:allure-java-commons:2.18.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: io.qameta.allure:allure-model:2.18.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: io.qameta.allure:allure-test-filter:2.18.1" level="project" />
     <orderEntry type="library" name="Maven: io.appium:java-client:4.1.2" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-java:2.53.1" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-chrome-driver:2.53.1" level="project" />

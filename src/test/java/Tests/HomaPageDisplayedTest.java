@@ -5,12 +5,14 @@ import Pages.AddCustomerPage;
 import Pages.HomePage;
 import Pages.LoginPage;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -24,7 +26,7 @@ public class HomaPageDisplayedTest extends BaseTest {
     public HomaPageDisplayedTest(){
         oreo = DeviceFarm.ANDROID_OREO.path;
     }
-    @BeforeTest
+    @BeforeClass
     public void setup() throws MalformedURLException {
         try{
             homePage = new HomePage();
@@ -37,6 +39,7 @@ public class HomaPageDisplayedTest extends BaseTest {
         }
     }
     @Test
+    @Description("addNewCustomerTest")
     public void addNewCustomerTest(){
 
         try{

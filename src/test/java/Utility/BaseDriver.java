@@ -23,10 +23,8 @@ public class BaseDriver {
     public static String oreo;
     public static DesiredCapabilities capabilities;
 
-
     // create a base driver function to run our driver in every test
     public AppiumDriver BaseDriver() throws MalformedURLException {
-
         oreo = DeviceFarm.ANDROID_OREO.path;
         capabilities = new DesiredCapabilities();
         capabilities = DeviceFarmUtility.pathToDesiredCapabilitites(this.oreo);

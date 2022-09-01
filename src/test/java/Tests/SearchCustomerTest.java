@@ -3,6 +3,7 @@ package Tests;
 import Devices.DeviceFarm;
 import Pages.*;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
 
@@ -35,6 +36,7 @@ public class SearchCustomerTest extends BaseTest {
         }
     }
     @Test
+    @Description("addCustomerTest")
     public void addCustomerTest() throws MalformedURLException {
 
         try{

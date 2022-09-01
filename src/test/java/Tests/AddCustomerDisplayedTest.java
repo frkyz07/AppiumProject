@@ -5,6 +5,7 @@ import Pages.AddCustomerPage;
 import Pages.HomePage;
 import Pages.LoginPage;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
 import org.slf4j.Logger;
@@ -34,14 +35,15 @@ public class AddCustomerDisplayedTest extends BaseTest {
             homePage = new HomePage();
             addCustomerPage = new AddCustomerPage();
             loginPage = new LoginPage();
-            logger.info("Base Driver initilaze");
+            logger.info("Base Driver initialize");
         }catch (RuntimeException e){
-            System.out.println("Couldnt start the Driver"+e);
-            logger.error("Base Driver could not initilaze");
+            System.out.println("Couldn't start the Driver"+e);
+            logger.error("Base Driver could not initialize");
         }
     }
-    // Add new Customer test craeted
+    // Add new Customer test created
     @Test
+    @Description("addNewCustomerTest")
     public void addNewCustomerTest(){
 
         // login function called
